@@ -12,3 +12,20 @@ public class Singleton {
         return instance;
     }
 }
+
+
+public class Main {
+    public static void main(String[] args) {
+        Runnable task =() ->{
+            Singleton s=Singleton.getInstance();
+            System.out.println(Thread.currentThread().getName()+" -> "+s.hashCode());
+        };
+
+        Thread t1=new Thread(task,"Thread1");
+        Thread t2=new Thread(task,"Thread2");
+
+        t1.start();
+        t2.start();
+
+    }
+}
